@@ -42,6 +42,18 @@ class contributorViewController: UIViewController, ContributorDelegate {
 //MARK: tableview delegate
 extension contributorViewController: UITableViewDelegate{
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let homeVC = storyboard?.instantiateViewController(withIdentifier: "homeVC") as? HomeViewController{
+            
+            //MARK: using userName of contributor and pass that to homeView Controller
+            homeVC.userInput = viewModelContributor.contributorData[indexPath.row].contributorProfileName!
+            
+            
+            //MARK: navigating to contributorViewController
+            self.navigationController?.pushViewController(homeVC, animated: true)
+      }
+    }
+    
 }
 
 //MARK: tableview dataSource
@@ -53,10 +65,9 @@ extension contributorViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contributorCell", for: indexPath as IndexPath) as! contributorTableViewCell
-        cell.contributorProfileName.text = viewModelContributor.contributorData[indexPath.row].contributorProfileName
-        cell.contributorImage.sd_setImage(with: URL(string: self.viewModelContributor.contributorData[indexPath.row].contributorImageUrl!) , completed: nil)
-        //MARK: make image circular
-        Utilities.roundImage(imageView: cell.contributorImage)
+        
+        let contributorData = viewModelContributor.contributorData[indexPath.row]
+        cell.setData(contributorData: contributorData)
         return cell
     }
     

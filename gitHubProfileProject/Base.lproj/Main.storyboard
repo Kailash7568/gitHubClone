@@ -72,10 +72,10 @@
             </objects>
             <point key="canvasLocation" x="242.0289855072464" y="67.663043478260875"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="homeVC" id="BYZ-38-t0r" customClass="ViewController" customModule="gitHubProfileProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" id="BYZ-38-t0r" customClass="HomeViewController" customModule="gitHubProfileProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,11 +84,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="BVM-zS-wgY">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="410"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileBackground" translatesAutoresizingMaskIntoConstraints="NO" id="6C1-P1-MQn">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="311"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="290" id="W3X-8V-d9Y"/>
                                             </constraints>
@@ -112,14 +112,14 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcF-bR-HfN">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bio" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcF-bR-HfN">
                                             <rect key="frame" x="20" y="230" width="374" height="17"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHU-qM-cK2">
-                                            <rect key="frame" x="147" y="280" width="120" height="40"/>
+                                            <rect key="frame" x="147" y="290" width="120" height="40"/>
                                             <color key="backgroundColor" systemColor="systemGreenColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="120" id="P9Q-D7-WGK"/>
@@ -140,7 +140,7 @@
                                             </buttonConfiguration>
                                         </button>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v0x-23-wRg">
-                                            <rect key="frame" x="0.0" y="320" width="414" height="70"/>
+                                            <rect key="frame" x="0.0" y="330" width="414" height="70"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="sRC-eS-IYL"/>
@@ -195,15 +195,6 @@
                                                 <outlet property="delegate" destination="BYZ-38-t0r" id="yW1-8y-TZr"/>
                                             </connections>
                                         </collectionView>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PvE-wK-SZw">
-                                            <rect key="frame" x="20" y="398" width="374" height="33"/>
-                                            <segments>
-                                                <segment title="Overview"/>
-                                                <segment title="Repositries"/>
-                                                <segment title="Projects"/>
-                                                <segment title="Stars"/>
-                                            </segments>
-                                        </segmentedControl>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -213,7 +204,6 @@
                                         <constraint firstItem="NaP-qf-qvm" firstAttribute="leading" secondItem="BVM-zS-wgY" secondAttribute="leading" constant="20" id="FN1-Y7-fTT"/>
                                         <constraint firstAttribute="trailing" secondItem="YcF-bR-HfN" secondAttribute="trailing" constant="20" id="JGV-Vp-Ywi"/>
                                         <constraint firstItem="AHU-qM-cK2" firstAttribute="centerX" secondItem="BVM-zS-wgY" secondAttribute="centerX" id="JrV-qG-ntR"/>
-                                        <constraint firstAttribute="trailing" secondItem="PvE-wK-SZw" secondAttribute="trailing" constant="20" symbolic="YES" id="LVu-L7-Hz4"/>
                                         <constraint firstItem="6C1-P1-MQn" firstAttribute="leading" secondItem="BVM-zS-wgY" secondAttribute="leading" id="Smt-f7-aw1"/>
                                         <constraint firstItem="JC7-PQ-9sJ" firstAttribute="centerX" secondItem="BVM-zS-wgY" secondAttribute="centerX" id="Zv5-Rm-R2f"/>
                                         <constraint firstItem="6C1-P1-MQn" firstAttribute="top" secondItem="BVM-zS-wgY" secondAttribute="top" id="a95-bA-9DB"/>
@@ -223,27 +213,23 @@
                                         <constraint firstItem="v0x-23-wRg" firstAttribute="top" secondItem="AHU-qM-cK2" secondAttribute="bottom" id="d1j-h5-9Uk"/>
                                         <constraint firstItem="YcF-bR-HfN" firstAttribute="leading" secondItem="BVM-zS-wgY" secondAttribute="leading" constant="20" id="ek0-wJ-fQH"/>
                                         <constraint firstItem="NaP-qf-qvm" firstAttribute="top" secondItem="JC7-PQ-9sJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fcQ-bm-nfb"/>
-                                        <constraint firstItem="PvE-wK-SZw" firstAttribute="top" secondItem="v0x-23-wRg" secondAttribute="bottom" constant="8" symbolic="YES" id="gpa-TG-lYO"/>
                                         <constraint firstItem="AHU-qM-cK2" firstAttribute="top" secondItem="6C1-P1-MQn" secondAttribute="bottom" constant="-21" id="h6V-FT-a5b"/>
-                                        <constraint firstItem="PvE-wK-SZw" firstAttribute="leading" secondItem="BVM-zS-wgY" secondAttribute="leading" constant="20" symbolic="YES" id="j0U-Gx-VKz"/>
                                         <constraint firstAttribute="trailing" secondItem="qSn-i0-TMD" secondAttribute="trailing" constant="20" id="lGb-3j-KCA"/>
                                         <constraint firstAttribute="trailing" secondItem="NaP-qf-qvm" secondAttribute="trailing" constant="20" id="mfE-81-v4u"/>
-                                        <constraint firstAttribute="bottom" secondItem="v0x-23-wRg" secondAttribute="bottom" constant="40" id="qez-Hl-dQ9"/>
-                                        <constraint firstAttribute="bottom" secondItem="PvE-wK-SZw" secondAttribute="bottom" id="qoC-Hx-Mp9"/>
+                                        <constraint firstAttribute="bottom" secondItem="v0x-23-wRg" secondAttribute="bottom" constant="10" id="qez-Hl-dQ9"/>
                                         <constraint firstItem="v0x-23-wRg" firstAttribute="leading" secondItem="BVM-zS-wgY" secondAttribute="leading" id="vfQ-aJ-H7R"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableViewCell" rowHeight="139" id="Srx-mA-QKl" customClass="repoTableViewCell" customModule="gitHubProfileProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="474.66666603088379" width="414" height="139"/>
+                                        <rect key="frame" x="0.0" y="454.66666603088379" width="414" height="139"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Srx-mA-QKl" id="t1s-52-bWz">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EGt-TT-mBR">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GitHub-Mark-32px" translatesAutoresizingMaskIntoConstraints="NO" id="EGt-TT-mBR">
                                                     <rect key="frame" x="25" y="16" width="55" height="55"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="SOC-oa-I4a"/>
                                                         <constraint firstAttribute="height" constant="55" id="hux-Xt-VF0"/>
@@ -418,7 +404,6 @@
                                             <outlet property="repoStarButton" destination="PQ6-0R-VvT" id="3QG-Et-1x2"/>
                                             <outlet property="repoStars" destination="jAc-3Q-tvS" id="2JD-hK-XyU"/>
                                             <outlet property="repoVisibility" destination="W3f-BZ-Cu6" id="DhT-hI-fpN"/>
-                                            <outlet property="topicTagsCollectionView" destination="BTt-Q9-NDr" id="dzC-hj-dO6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -450,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928" y="68"/>
+            <point key="canvasLocation" x="927.536231884058" y="67.663043478260875"/>
         </scene>
         <!--Contributor View Controller-->
         <scene sceneID="Say-bO-KWn">
@@ -542,6 +527,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="GitHub-Mark-32px" width="40" height="40"/>
         <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="fork" width="96" height="96"/>
         <image name="globe.americas.fill" catalog="system" width="128" height="121"/>

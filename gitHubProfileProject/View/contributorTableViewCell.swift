@@ -17,10 +17,18 @@ class contributorTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
+    }
+    
+    func setData(contributorData: ContributorModel){
+        
+        contributorProfileName.text = contributorData.contributorProfileName
+        contributorImage.sd_setImage(with: URL(string: contributorData.contributorImageUrl!) , completed: nil)
+        //MARK: make image circular
+        Utilities.roundImage(imageView: contributorImage)
     }
 
 }

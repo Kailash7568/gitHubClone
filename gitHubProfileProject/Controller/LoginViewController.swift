@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         
-        let homeVC : ViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! ViewController
+        let homeVC : HomeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! HomeViewController
         homeVC.userInput = userNameTextField.text!
         userNameTextField.endEditing(true)
         self.navigationController?.pushViewController(homeVC, animated: true)
