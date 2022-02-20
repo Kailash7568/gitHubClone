@@ -112,7 +112,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bio" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcF-bR-HfN">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bio" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcF-bR-HfN">
                                             <rect key="frame" x="20" y="230" width="374" height="17"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -378,7 +378,7 @@
                                                 <constraint firstItem="BN9-JI-mIR" firstAttribute="leading" secondItem="jAc-3Q-tvS" secondAttribute="trailing" constant="15" id="g4x-Yb-0UE"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="UVY-hi-tFR" secondAttribute="bottom" constant="5" id="j0x-uO-Kd0"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="jAc-3Q-tvS" secondAttribute="bottom" constant="5" id="j8e-hf-tO7"/>
-                                                <constraint firstItem="PQ6-0R-VvT" firstAttribute="top" secondItem="EGt-TT-mBR" secondAttribute="bottom" constant="35" id="jxs-0P-0ok"/>
+                                                <constraint firstItem="PQ6-0R-VvT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EGt-TT-mBR" secondAttribute="bottom" constant="35" id="jxs-0P-0ok"/>
                                                 <constraint firstItem="W3f-BZ-Cu6" firstAttribute="top" secondItem="4aJ-Cr-czz" secondAttribute="top" id="kcv-1M-ORC"/>
                                                 <constraint firstItem="BTt-Q9-NDr" firstAttribute="leading" secondItem="ISM-7q-Z5W" secondAttribute="leading" id="kid-dL-zeU"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="BN9-JI-mIR" secondAttribute="bottom" constant="5" id="lQ6-z4-hiS"/>
@@ -427,10 +427,10 @@
                         <outlet property="collectionViewHeightConstraints" destination="sRC-eS-IYL" id="TEJ-b5-X9Q"/>
                         <outlet property="followButton" destination="AHU-qM-cK2" id="jgV-O7-ro4"/>
                         <outlet property="lblBio" destination="YcF-bR-HfN" id="SNd-2O-GPV"/>
-                        <outlet property="lblProfileName" destination="qSn-i0-TMD" id="mgi-nt-eEC"/>
-                        <outlet property="lblUserName" destination="NaP-qf-qvm" id="3eQ-gs-Rpp"/>
+                        <outlet property="name" destination="NaP-qf-qvm" id="3eQ-gs-Rpp"/>
                         <outlet property="tableView" destination="5Co-tQ-yvj" id="P3w-EB-g3C"/>
                         <outlet property="userImageView" destination="JC7-PQ-9sJ" id="FJw-vP-dfR"/>
+                        <outlet property="userName" destination="qSn-i0-TMD" id="mgi-nt-eEC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

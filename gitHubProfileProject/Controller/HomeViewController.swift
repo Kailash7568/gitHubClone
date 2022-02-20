@@ -13,8 +13,8 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
     
     //MARK: outlets
     @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var lblUserName: UILabel!
-    @IBOutlet weak var lblProfileName: UILabel!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var lblBio: UILabel!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -59,6 +59,8 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
         //MARK: tableView Code
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
         //MARK: tableView Code
         
     }
@@ -67,10 +69,12 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
     //MARK: Conforming protocol-delegate method didFinishFetchingUserData()
     func didFinishFetchingUserData(){
         DispatchQueue.main.async {
-            self.lblUserName.text = self.viewModelUser.userData?.userName
-            self.lblProfileName.text = "@"+(self.viewModelUser.userData?.profileName)!
+            guard let userName = self.viewModelUser.userData?.userName else { return }
+            self.userName.text = "@" + userName
+            self.name.text = self.viewModelUser.userData?.name
             self.lblBio.text = self.viewModelUser.userData?.bio
-            self.userImageView.sd_setImage(with: URL(string: self.viewModelUser.userData!.userImageUrl!), completed: nil)
+            guard let userImage = self.viewModelUser.userData?.userImageUrl else { return }
+            self.userImageView.sd_setImage(with: URL(string: userImage), completed: nil)
             if(!self.viewModelUser.numbers.isEmpty){
                 self.collectionViewHeightConstraints.constant = 70
                 self.collectionView.reloadData()
@@ -102,8 +106,9 @@ extension HomeViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath as IndexPath) as! userCollectionViewCell
         
-        cell.lblNumber.text = String(Utilities.short(self.viewModelUser.numbers[indexPath.row]))
-        cell.lblText.text = self.viewModelUser.texts[indexPath.row]
+        let number = viewModelUser.numbers[indexPath.row]
+        let text = viewModelUser.texts[indexPath.row]
+        cell.setData(number: number, text: text)
         return cell
     }
     

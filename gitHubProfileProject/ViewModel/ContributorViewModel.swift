@@ -26,8 +26,10 @@ class ContributorViewModel{
     // MARK: updating contributors data
     func getContributorData(user: String, repoName: String){
         contributors?.getContributorData(user: user, repoName: repoName, completionHandler: { status, data, error in
-            self.contributorData.append(contentsOf: data!)
-            self.delegate?.didFinishFetchingContributorData()
+            if let data = data {
+                self.contributorData.append(contentsOf: data)
+                self.delegate?.didFinishFetchingContributorData()
+            }
         })
     }
 }

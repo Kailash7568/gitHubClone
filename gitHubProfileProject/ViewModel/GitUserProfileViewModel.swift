@@ -24,7 +24,7 @@ class GitUserProfileViewModel{
     var numbers = [Int]()
     
     init(){
-       repository = FetchUserRepository() // MARK: Why didn't we define it as a variable?
+       repository = FetchUserRepository() 
     }
     
     // MARK: Updating user data
@@ -49,8 +49,10 @@ class GitUserProfileViewModel{
     func getRepoData(user: String){
         repository?.getRepoData(user: user) {[weak self] (status, data, error) in
             if status {
-                self?.repoData.append(contentsOf: data!)
-                self?.delegate?.didFinishFetchingRepoData()
+                if let data = data {
+                    self?.repoData.append(contentsOf: data)
+                    self?.delegate?.didFinishFetchingRepoData()
+                }
             }
             else{
                 print(error ?? "System Error")

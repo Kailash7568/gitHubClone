@@ -36,9 +36,9 @@ class repoTableViewCell: UITableViewCell {
         repoName.text = repoData.repoName
         repoDescription.text = repoData.repoDescription
         repoLanguage.text = repoData.repoLanguage ?? "nil"
-        repoStars.text = String(repoData.repoStarsCount!)
-        repoForks.text = String(repoData.repoForksCount!)
-        repoLastUpdated.text = Utilities.dateDifference(repoDate: repoData.repoLastUpdated!)
+        repoStars.text = Utilities.short(repoData.repoStarsCount ?? 0)
+        repoForks.text = Utilities.short(repoData.repoForksCount ?? 0)
+        repoLastUpdated.text = Utilities.dateDifference(repoDate: repoData.repoLastUpdated ?? "")
         repoStarButton.layer.cornerRadius = 5
         repoImage.sd_setImage(with: URL(string: "https://cdn-icons-png.flaticon.com/512/25/25231.png"), completed: nil)
         Utilities.roundImage(imageView: repoImage) //MARK: to make image in the cell circular
