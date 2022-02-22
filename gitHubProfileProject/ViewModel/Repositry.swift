@@ -26,8 +26,13 @@ class FetchUserRepository: RepositoryProtocol{
         
         if let url = URL(string: "https://api.github.com/users/" + user){
             let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-                if let error = error {
-                    completionHandler(false, nil, error.localizedDescription)
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completionHandler(false, nil, String(describing: error))
+                    return
+                }
+                
+                if httpResponse.statusCode != 200 {
+                    completionHandler(false, nil, String(describing: error))
                     return
                 }
                 do {
@@ -49,8 +54,13 @@ class FetchUserRepository: RepositoryProtocol{
         
         if let url = URL(string: "https://api.github.com/users/" + user + "/repos"){
             let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-                if let error = error {
-                    completionHandler(false, nil, error.localizedDescription)
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completionHandler(false, nil, String(describing: error))
+                    return
+                }
+                
+                if httpResponse.statusCode != 200 {
+                    completionHandler(false, nil, String(describing: error))
                     return
                 }
                 do {
@@ -73,8 +83,13 @@ class FetchUserRepository: RepositoryProtocol{
         if let url = URL(string:"https://api.github.com/repos/" + user + "/" + repoName + "/contributors"){
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 
-                if let error = error {
-                    completionHandler(false, nil, error.localizedDescription)
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completionHandler(false, nil, String(describing: error))
+                    return
+                }
+                
+                if httpResponse.statusCode != 200 {
+                    completionHandler(false, nil, String(describing: error))
                     return
                 }
                 do {

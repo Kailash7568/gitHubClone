@@ -11,6 +11,7 @@ target 'gitHubProfileProject' do
 
   pod 'SDWebImage'
   pod 'TTGTagCollectionView'
+  pod 'TagListView', '~> 1.0'
 
   target 'gitHubProfileProjectTests' do
     inherit! :search_paths

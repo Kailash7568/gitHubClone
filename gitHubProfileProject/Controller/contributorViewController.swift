@@ -13,6 +13,9 @@ class contributorViewController: UIViewController, ContributorDelegate {
     //MARK: outlets
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var contributorsNotFoundView: UIView!
+    
+    
     var user = ""
     var repoName = ""
     var viewModelContributor = ContributorViewModel()
@@ -24,6 +27,7 @@ class contributorViewController: UIViewController, ContributorDelegate {
         tableView.dataSource = self
         viewModelContributor.delegate = self
         viewModelContributor.getContributorData(user: user, repoName: repoName)
+        title = "Contributors"
         
     }
     
@@ -32,6 +36,9 @@ class contributorViewController: UIViewController, ContributorDelegate {
         DispatchQueue.main.async {
             if(!self.viewModelContributor.contributorData.isEmpty){
                 self.tableView.reloadData()
+            } else{
+                //MARK: if there is no Contributor
+                self.contributorsNotFoundView.isHidden = false   //Kudoleh
             }
         }
         

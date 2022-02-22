@@ -20,28 +20,21 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewHeightConstraints: NSLayoutConstraint!
-    @IBOutlet weak var headerSegmentControl: UISegmentedControl!
+    @IBOutlet weak var userNotFoundView: UIView!
     
     var userInput: String = ""
     let margin: CGFloat = 10
     
     
-    //MARK: UserViewModel object
-    var viewModelUser = GitUserProfileViewModel()
+    //MARK: GitUserProfileViewModel object
+    var viewModelUser = GitUserProfileViewModel(repositry: FetchUserRepository())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(viewModelUser.numbers.isEmpty){
-            collectionViewHeightConstraints.constant = 0
-        }
+        
         viewModelUser.delegate = self
         viewModelUser.getUserData(user: userInput)
         viewModelUser.getRepoData(user: userInput)
-        
-        
-        Utilities.roundImage(imageView: userImageView)
-        Utilities.roundButton(button: followButton)
-        
         
         //MARK: collectionView Code
         collectionView.delegate = self
@@ -59,9 +52,15 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
         //MARK: tableView Code
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 600
         //MARK: tableView Code
+        
+        //MARK: Make height of collectionView containing userInfo zero when there is no userInfo
+        if(viewModelUser.userInfoNumbers.isEmpty){
+            collectionViewHeightConstraints.constant = 0
+        }
+        
+        Utilities.roundImage(imageView: userImageView)
+        Utilities.roundButton(button: followButton)
         
     }
     
@@ -69,13 +68,17 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
     //MARK: Conforming protocol-delegate method didFinishFetchingUserData()
     func didFinishFetchingUserData(){
         DispatchQueue.main.async {
-            guard let userName = self.viewModelUser.userData?.userName else { return }
+            guard let userName = self.viewModelUser.userData?.userName else {
+                //MARK: if there is no valid user present
+                self.userNotFoundView.isHidden = false
+                return
+            }
             self.userName.text = "@" + userName
             self.name.text = self.viewModelUser.userData?.name
             self.lblBio.text = self.viewModelUser.userData?.bio
             guard let userImage = self.viewModelUser.userData?.userImageUrl else { return }
             self.userImageView.sd_setImage(with: URL(string: userImage), completed: nil)
-            if(!self.viewModelUser.numbers.isEmpty){
+            if(!self.viewModelUser.userInfoNumbers.isEmpty){
                 self.collectionViewHeightConstraints.constant = 70
                 self.collectionView.reloadData()
             }
@@ -94,31 +97,29 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
 }
 
 
-//MARK: collectionView Code
-
-//MARK: collectionView dataSource
+//MARK: userInfo collectionView dataSource
 extension HomeViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModelUser.numbers.count
+        return viewModelUser.userInfoNumbers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath as IndexPath) as! userCollectionViewCell
         
-        let number = viewModelUser.numbers[indexPath.row]
-        let text = viewModelUser.texts[indexPath.row]
+        let number = viewModelUser.userInfoNumbers[indexPath.row]
+        let text = viewModelUser.userInfoTexts[indexPath.row]
         cell.setData(number: number, text: text)
         return cell
     }
     
 }
 
-//MARK: collectionView delegateFlowLayout
+//MARK: userInfo collectionView delegateFlowLayout
 extension HomeViewController : UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let noOfCellsInRow = viewModelUser.numbers.count   //number of column you want
+        let noOfCellsInRow = viewModelUser.userInfoNumbers.count   //number of column you want
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let totalSpace = flowLayout.sectionInset.left
         + flowLayout.sectionInset.right
@@ -129,20 +130,16 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout{
     }
     
 }
-//MARK: collectionView Code
 
 
-
-//MARK: tableView Code
-
-//MARK: tableView delegate
+//MARK: userRepositry tableView delegate
 extension HomeViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let contributorVC = storyboard?.instantiateViewController(withIdentifier: "contributorVC") as? contributorViewController{
             
             //MARK: passing userInput and repoName to contributorViewController
             contributorVC.user = userInput
-            contributorVC.repoName = viewModelUser.repoData[indexPath.row].repoName!
+            contributorVC.repoName = viewModelUser.repoData[indexPath.row].repoName ?? ""
             
             //MARK: navigating to contributorViewController
             self.navigationController?.pushViewController(contributorVC, animated: true)
@@ -150,7 +147,7 @@ extension HomeViewController: UITableViewDelegate{
     }
     
     
-    //
+    //MARK: make segmentControll header of the tableview section
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let v = UIView()
         v.backgroundColor = .white
@@ -160,11 +157,11 @@ extension HomeViewController: UITableViewDelegate{
         v.addSubview(segmentedControl)
         return v
     }
-    //
+    
 }
 
 
-//MARK: tableView dataSource
+//MARK: userRepositry tableView dataSource
 extension HomeViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModelUser.repoData.count
@@ -178,4 +175,4 @@ extension HomeViewController : UITableViewDataSource{
         return cell
     }
 }
-//MARK: tableView Code
+

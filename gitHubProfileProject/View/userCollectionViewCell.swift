@@ -13,6 +13,7 @@ class userCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblNumber: UILabel!
     @IBOutlet weak var lblText: UILabel!
     
+    //MARK: fxn to set userInfo texts and numbers
     func setData(number: Int, text: String){
         lblNumber.text = String(Utilities.short(number))
         lblText.text = text

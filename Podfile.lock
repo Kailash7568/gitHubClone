@@ -2,21 +2,25 @@ PODS:
   - SDWebImage (5.12.3):
     - SDWebImage/Core (= 5.12.3)
   - SDWebImage/Core (5.12.3)
+  - TagListView (1.4.1)
   - TTGTagCollectionView (2.1.0)
 
 DEPENDENCIES:
   - SDWebImage
+  - TagListView (~> 1.0)
   - TTGTagCollectionView
 
 SPEC REPOS:
   trunk:
     - SDWebImage
+    - TagListView
     - TTGTagCollectionView
 
 SPEC CHECKSUMS:
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
+  TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
   TTGTagCollectionView: a2a8668c659b39e7a6ffd6590475ea53a7ae95f7
 
-PODFILE CHECKSUM: bd84d9b33f5d01768d449827e37ffd29940b0b5f
+PODFILE CHECKSUM: 69947538e6cbb8ac944b3e2a96c2b1f092c9d629
 
 COCOAPODS: 1.11.2

@@ -16,15 +16,15 @@ protocol GitUserProfileDelegate{
 
 class GitUserProfileViewModel{
     // MARK: Stored Properties
-    var repoData = [UserRepositriesModel]()
-    var repository: RepositoryProtocol?
-    var userData: UserModel?
-    var delegate: GitUserProfileDelegate?
-    let texts = ["repositories", "stars", "followers", "following"]
-    var numbers = [Int]()
+    var delegate: GitUserProfileDelegate? //MARK: GitUserProfileDelegate refernce
+    var repository: RepositoryProtocol? //MARK: RepositoryProtocol reference
+    var repoData = [UserRepositriesModel]() //MARK: to store repositries data
+    var userData: UserModel? //MARK: to store user data
+    let userInfoTexts = ["repositories", "stars", "followers", "following"]
+    var userInfoNumbers = [Int]()
     
-    init(){
-       repository = FetchUserRepository() 
+    init(repositry: RepositoryProtocol){
+        self.repository = repositry
     }
     
     // MARK: Updating user data
@@ -32,10 +32,10 @@ class GitUserProfileViewModel{
         repository?.getUserData(user: user) {[weak self] (status, data, error) in
             if status{
                 self?.userData = data
-                self?.numbers.append((self?.userData?.repositories ?? 0))
-                self?.numbers.append(Int.random(in: 1000...100000))
-                self?.numbers.append((self?.userData?.followers ?? 0))
-                self?.numbers.append((self?.userData?.following ?? 0))
+                self?.userInfoNumbers.append((self?.userData?.repositories ?? 0))
+                self?.userInfoNumbers.append(Int.random(in: 1000...100000))
+                self?.userInfoNumbers.append((self?.userData?.followers ?? 0))
+                self?.userInfoNumbers.append((self?.userData?.following ?? 0))
                 self?.delegate?.didFinishFetchingUserData()
             }
             else{

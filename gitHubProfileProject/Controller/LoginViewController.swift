@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         //MARK: round edges of button
         Utilities.roundButton(button: loginButton)
+        
         userNameTextField.delegate = self
         
     }
@@ -25,10 +26,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonPressed(_ sender: Any) {
         
         let homeVC : HomeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! HomeViewController
-        homeVC.userInput = userNameTextField.text!
-        userNameTextField.endEditing(true)
-        self.navigationController?.pushViewController(homeVC, animated: true)
         
+        //MARK: pass textField data to next screen as userInput
+        homeVC.userInput = userNameTextField.text!
+        
+        //MARK: navigate to homeScreen
+        self.navigationController?.pushViewController(homeVC, animated: true)
         
     }
     

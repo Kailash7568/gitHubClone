@@ -8,6 +8,16 @@
 import Foundation
 import UIKit
 
+extension Date {
+    func localDate() -> Date {
+        let nowUTC = Date()
+        let timeZoneOffset = Double(TimeZone.current.secondsFromGMT(for: nowUTC))
+        guard let localDate = Calendar.current.date(byAdding: .second, value: Int(timeZoneOffset), to: nowUTC) else {return Date()}
+
+        return localDate
+    }
+}
+
 class Utilities{
     
     //MARK: function to round image
@@ -28,7 +38,7 @@ class Utilities{
         }
 
         if num >= 10000 && num < 1000000 {
-            return "\(num/1000)k"
+            return "\(num/1000)K"
         }
 
         if num >= 1000000 && num < 10000000 {
@@ -48,7 +58,7 @@ class Utilities{
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let now = Date()
+        let now = Date().localDate()
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
         formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
