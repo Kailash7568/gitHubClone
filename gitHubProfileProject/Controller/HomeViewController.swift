@@ -13,11 +13,11 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
     
     //MARK: outlets
     @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var lblBio: UILabel!
+    @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var labelUserName: UILabel!
+    @IBOutlet weak var labelBio: UILabel!
     @IBOutlet weak var followButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewHeightConstraints: NSLayoutConstraint!
     @IBOutlet weak var userNotFoundView: UIView!
@@ -27,7 +27,8 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
     
     
     //MARK: GitUserProfileViewModel object
-    var viewModelUser = GitUserProfileViewModel(repositry: FetchUserRepository())
+    static let repositryObj = FetchUserRepository()
+    var viewModelUser = GitUserProfileViewModel(repositry: repositryObj)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +51,8 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
         //MARK: collectionView Code
         
         //MARK: tableView Code
-        tableView.dataSource = self
-        tableView.delegate = self
+        homeTableView.dataSource = self
+        homeTableView.delegate = self
         //MARK: tableView Code
         
         //MARK: Make height of collectionView containing userInfo zero when there is no userInfo
@@ -59,8 +60,8 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
             collectionViewHeightConstraints.constant = 0
         }
         
-        Utilities.roundImage(imageView: userImageView)
-        Utilities.roundButton(button: followButton)
+        Utils.roundImage(imageView: userImageView)
+        Utils.roundButton(button: followButton)
         
     }
     
@@ -69,13 +70,12 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
     func didFinishFetchingUserData(){
         DispatchQueue.main.async {
             guard let userName = self.viewModelUser.userData?.userName else {
-                //MARK: if there is no valid user present
-                self.userNotFoundView.isHidden = false
                 return
             }
-            self.userName.text = "@" + userName
-            self.name.text = self.viewModelUser.userData?.name
-            self.lblBio.text = self.viewModelUser.userData?.bio
+            self.homeTableView.isHidden = false
+            self.labelUserName.text = "@" + userName
+            self.labelName.text = self.viewModelUser.userData?.name
+            self.labelBio.text = self.viewModelUser.userData?.bio
             guard let userImage = self.viewModelUser.userData?.userImageUrl else { return }
             self.userImageView.sd_setImage(with: URL(string: userImage), completed: nil)
             if(!self.viewModelUser.userInfoNumbers.isEmpty){
@@ -85,14 +85,26 @@ class HomeViewController: UIViewController, GitUserProfileDelegate {
         }
     }
     
+    func didNotFetchUserData() {
+        DispatchQueue.main.async {
+            //MARK: if there is no valid user present
+            self.userNotFoundView.isHidden = false
+        }
+    }
+    
     //MARK: Conforming protocol-delegate method didFinishFetchingRepoData()
     func didFinishFetchingRepoData(){
         DispatchQueue.main.async {
             if(!self.viewModelUser.repoData.isEmpty){
-                self.tableView.reloadData()
+                self.homeTableView.reloadData()
             }
         }
     }
+    
+    func didNotFetchRepoData() {
+        
+    }
+    
     
 }
 
@@ -135,11 +147,11 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout{
 //MARK: userRepositry tableView delegate
 extension HomeViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let contributorVC = storyboard?.instantiateViewController(withIdentifier: "contributorVC") as? contributorViewController{
+        if let contributorVC = storyboard?.instantiateViewController(withIdentifier: "contributorVC") as? ContributorViewController{
             
             //MARK: passing userInput and repoName to contributorViewController
             contributorVC.user = userInput
-            contributorVC.repoName = viewModelUser.repoData[indexPath.row].repoName ?? ""
+            contributorVC.repoName = viewModelUser.repoData[indexPath.row].repoName
             
             //MARK: navigating to contributorViewController
             self.navigationController?.pushViewController(contributorVC, animated: true)
@@ -175,4 +187,5 @@ extension HomeViewController : UITableViewDataSource{
         return cell
     }
 }
+
 

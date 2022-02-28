@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="height" constant="40" id="XFc-IS-uD5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YD-Ta-uN1">
                                 <rect key="frame" x="157" y="428" width="100" height="40"/>
@@ -80,7 +80,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5Co-tQ-yvj">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5Co-tQ-yvj">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="BVM-zS-wgY">
@@ -236,7 +236,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RepoName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aJ-Cr-czz">
-                                                    <rect key="frame" x="100" y="15.999999999999998" width="89" height="20.333333333333329"/>
+                                                    <rect key="frame" x="100" y="16" width="89" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -250,7 +250,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RepoDescription" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISM-7q-Z5W">
-                                                    <rect key="frame" x="100" y="41.333333333333336" width="289" height="15.666666666666664"/>
+                                                    <rect key="frame" x="100" y="41.666666666666664" width="289" height="15.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -303,7 +303,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQ6-0R-VvT">
-                                                    <rect key="frame" x="33.666666666666671" y="106" width="37.666666666666671" height="22.333333333333343"/>
+                                                    <rect key="frame" x="33.666666666666664" y="106" width="37.999999999999993" height="22.333333333333343"/>
                                                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22.329999999999998" id="X0c-54-lKE"/>
@@ -323,7 +323,7 @@
                                                     </buttonConfiguration>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eke-X7-gjV" customClass="TagListView" customModule="TagListView">
-                                                    <rect key="frame" x="100" y="65" width="289" height="34"/>
+                                                    <rect key="frame" x="100" y="65.333333333333329" width="289" height="33.666666666666671"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Eah-G0-8v2"/>
@@ -436,11 +436,11 @@
                         <outlet property="collectionView" destination="v0x-23-wRg" id="fZn-y4-XJg"/>
                         <outlet property="collectionViewHeightConstraints" destination="sRC-eS-IYL" id="TEJ-b5-X9Q"/>
                         <outlet property="followButton" destination="AHU-qM-cK2" id="jgV-O7-ro4"/>
-                        <outlet property="lblBio" destination="YcF-bR-HfN" id="SNd-2O-GPV"/>
-                        <outlet property="name" destination="NaP-qf-qvm" id="3eQ-gs-Rpp"/>
-                        <outlet property="tableView" destination="5Co-tQ-yvj" id="P3w-EB-g3C"/>
+                        <outlet property="homeTableView" destination="5Co-tQ-yvj" id="P3w-EB-g3C"/>
+                        <outlet property="labelBio" destination="YcF-bR-HfN" id="SNd-2O-GPV"/>
+                        <outlet property="labelName" destination="NaP-qf-qvm" id="3eQ-gs-Rpp"/>
+                        <outlet property="labelUserName" destination="qSn-i0-TMD" id="mgi-nt-eEC"/>
                         <outlet property="userImageView" destination="JC7-PQ-9sJ" id="FJw-vP-dfR"/>
-                        <outlet property="userName" destination="qSn-i0-TMD" id="mgi-nt-eEC"/>
                         <outlet property="userNotFoundView" destination="HFB-nW-Rk0" id="LM6-2t-gfp"/>
                     </connections>
                 </viewController>
@@ -451,7 +451,7 @@
         <!--Contributor View Controller-->
         <scene sceneID="Say-bO-KWn">
             <objects>
-                <viewController storyboardIdentifier="contributorVC" id="TJe-4f-Bn3" customClass="contributorViewController" customModule="gitHubProfileProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="contributorVC" id="TJe-4f-Bn3" customClass="ContributorViewController" customModule="gitHubProfileProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bff-OQ-Dl6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -531,8 +531,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contributorTableView" destination="qmU-PM-PVr" id="uSg-6p-Ezz"/>
                         <outlet property="contributorsNotFoundView" destination="esD-8w-5Nd" id="8uV-uj-C91"/>
-                        <outlet property="tableView" destination="qmU-PM-PVr" id="uSg-6p-Ezz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FHf-Wv-u1m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

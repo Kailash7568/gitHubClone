@@ -28,7 +28,7 @@ class contributorTableViewCell: UITableViewCell {
         contributorProfileName.text = contributorData.contributorProfileName
         contributorImage.sd_setImage(with: URL(string: contributorData.contributorImageUrl!) , completed: nil)
         //MARK: make image circular
-        Utilities.roundImage(imageView: contributorImage)
+        Utils.roundImage(imageView: contributorImage)
     }
 
 }

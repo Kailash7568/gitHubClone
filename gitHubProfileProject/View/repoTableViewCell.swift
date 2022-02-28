@@ -42,9 +42,9 @@ class repoTableViewCell: UITableViewCell {
         }else{
             repoLanguage.text = repoData.repoLanguage
         }
-        repoStars.text = Utilities.short(repoData.repoStarsCount ?? 0)
-        repoForks.text = Utilities.short(repoData.repoForksCount ?? 0)
-        repoLastUpdated.text = Utilities.dateDifference(repoDate: repoData.repoLastUpdated ?? "")
+        repoStars.text = Utils.short(repoData.repoStarsCount ?? 0)
+        repoForks.text = Utils.short(repoData.repoForksCount ?? 0)
+        repoLastUpdated.text = Utils.dateDifference(repoDate: repoData.repoLastUpdated ?? "")
         repoStarButton.layer.cornerRadius = 5
         repoImage.sd_setImage(with: URL(string: "https://cdn-icons-png.flaticon.com/512/25/25231.png"), completed: nil)
         if(repoData.repoTopicTags?.count != 0){
@@ -53,7 +53,7 @@ class repoTableViewCell: UITableViewCell {
         }else{
             topicTagsView.isHidden = true
         }
-        Utilities.roundImage(imageView: repoImage) //MARK: to make image in the cell circular
+        Utils.roundImage(imageView: repoImage) //MARK: to make image in the cell circular
     }
 
 }

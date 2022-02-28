@@ -17,7 +17,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         //MARK: round edges of button
-        Utilities.roundButton(button: loginButton)
+        Utils.roundButton(button: loginButton)
         
         userNameTextField.delegate = self
         

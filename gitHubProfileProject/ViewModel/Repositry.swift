@@ -17,10 +17,6 @@ protocol RepositoryProtocol {
 
 class FetchUserRepository: RepositoryProtocol{
     
-    init(){
-        
-    }
-    
     // MARK: Fetching User Profile Data
     func getUserData(user: String, completionHandler: @escaping (_ status: Bool, _ data: UserModel?, _ error: String?)->Void){
         
@@ -33,7 +29,6 @@ class FetchUserRepository: RepositoryProtocol{
                 
                 if httpResponse.statusCode != 200 {
                     completionHandler(false, nil, String(describing: error))
-                    return
                 }
                 do {
                     if let data = data{

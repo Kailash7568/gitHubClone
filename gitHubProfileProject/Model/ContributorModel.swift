@@ -9,7 +9,7 @@ import Foundation
 
 struct ContributorModel : Codable {
     
-    var contributorProfileName : String?
+    var contributorProfileName : String
     var contributorImageUrl : String?
     
     enum CodingKeys: String, CodingKey {

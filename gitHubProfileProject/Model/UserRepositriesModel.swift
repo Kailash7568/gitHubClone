@@ -8,7 +8,7 @@
 import Foundation
 
 struct UserRepositriesModel : Codable {
-    var repoName : String?
+    var repoName : String
     var repoDescription : String?
     var repoLastUpdated : String?
     var repoLanguage : String?

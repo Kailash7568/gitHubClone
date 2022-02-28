@@ -15,7 +15,7 @@ class userCollectionViewCell: UICollectionViewCell {
     
     //MARK: fxn to set userInfo texts and numbers
     func setData(number: Int, text: String){
-        lblNumber.text = String(Utilities.short(number))
+        lblNumber.text = String(Utils.short(number))
         lblText.text = text
     }
     

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK: Date extension to convert GMT to IST
 extension Date {
     func localDate() -> Date {
         let nowUTC = Date()
@@ -18,7 +19,7 @@ extension Date {
     }
 }
 
-class Utilities{
+class Utils{
     
     //MARK: function to round image
     static func roundImage(imageView: UIImageView){
@@ -56,13 +57,12 @@ class Utilities{
     static func dateDifference(repoDate: String) -> String{
 
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let now = Date().localDate()
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
         formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
-        formatter.maximumUnitCount = 2
+//        formatter.maximumUnitCount = 2
         
         if let date = dateFormatter.date(from:repoDate){
             let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date, to: now)

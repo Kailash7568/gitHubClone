@@ -11,7 +11,9 @@ import Foundation
 
 protocol GitUserProfileDelegate{
     func didFinishFetchingUserData()
+    func didNotFetchUserData()
     func didFinishFetchingRepoData()
+    func didNotFetchRepoData()
 }
 
 class GitUserProfileViewModel{
@@ -33,16 +35,16 @@ class GitUserProfileViewModel{
             if status{
                 self?.userData = data
                 self?.userInfoNumbers.append((self?.userData?.repositories ?? 0))
-                self?.userInfoNumbers.append(Int.random(in: 1000...100000))
+                self?.userInfoNumbers.append(100)
                 self?.userInfoNumbers.append((self?.userData?.followers ?? 0))
                 self?.userInfoNumbers.append((self?.userData?.following ?? 0))
                 self?.delegate?.didFinishFetchingUserData()
             }
             else{
-                print(error ?? "System Error")
+                print("System Error")
+                self?.delegate?.didNotFetchUserData()
             }
         }
-        
     }
     
     // MARK: Updating repo data
@@ -56,6 +58,7 @@ class GitUserProfileViewModel{
             }
             else{
                 print(error ?? "System Error")
+                self?.delegate?.didNotFetchRepoData()
             }
         }
         
